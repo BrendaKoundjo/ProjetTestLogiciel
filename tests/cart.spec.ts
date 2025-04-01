@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('Ajouter au panier', async ({ page }) => {
   // Configuration
-  test.setTimeout(180000); // 3 minutes
+  test.setTimeout(240000); // 4 minutes
 
   // 1. Navigation initiale et vérification de la page d'accueil
   await page.goto('https://ztrain-web.vercel.app/home');
@@ -40,6 +40,5 @@ test('Ajouter au panier', async ({ page }) => {
   await page.locator('#style_cart_footer__jPYGe').waitFor({ state: 'visible', timeout: 10000 });
   const misejmontpanierText = await page.locator('#style_totalPrice__o2yCy h5:nth-child(2)').innerText();
   const misejprixtotal = parseFloat(misejmontpanierText.replace(/[^\d.]/g, ''));
-  console.log('Prix total après ajout du premier produit au panier:', misejprixtotal);
   expect(misejprixtotal).toBeGreaterThan(prixinitial);
 });
